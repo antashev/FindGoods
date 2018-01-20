@@ -129,6 +129,7 @@ captures/
 .idea/tasks.xml
 .idea/gradle.xml
 .idea/dictionaries
+.idea/vcs.xml
 .idea/libraries
 
 # Keystore files
