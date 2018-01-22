@@ -5,14 +5,12 @@ import com.arellomobile.mvp.MvpPresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import ru.modulkassa.findgoods.domain.good.GoodItemSyncManager
-import ru.modulkassa.findgoods.domain.repository.GoodItemRepository
 import timber.log.Timber
 import javax.inject.Inject
 
 @InjectViewState
 class GoodListPresenter @Inject constructor(
-    private val goodItemSyncManager: GoodItemSyncManager,
-    private val goodItemRepository: GoodItemRepository
+    private val goodItemSyncManager: GoodItemSyncManager
 ): MvpPresenter<GoodListView>() {
 
     override fun onFirstViewAttach() {
@@ -21,7 +19,7 @@ class GoodListPresenter @Inject constructor(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                Timber.i("-------->OK ${goodItemRepository.getItems().size}")
+                Timber.i("-------->OK ")
 
             },{
                Timber.i("--------> $it")
