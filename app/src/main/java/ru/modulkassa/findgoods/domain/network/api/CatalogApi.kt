@@ -1,27 +1,18 @@
 package ru.modulkassa.goods.core.api
 
 import io.reactivex.Single
-import okhttp3.ResponseBody
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
-import retrofit2.http.Query
-import retrofit2.http.Streaming
 import ru.modulkassa.findgoods.domain.good.GoodItem
+import ru.modulkassa.findgoods.domain.network.dto.GoodItemResponse
 
 interface CatalogApi {
 
-    /**
-     * Получить каталог
-     * @param retailPointId идентификатор торговой точки
-     * @param catalogs список наименований каталогов через зяпятую, например: `"A,B,C"`
-     * @return поток файла каталога
-     */
-    @Streaming
-    @GET("v2/retail-point/{retailPointId}/catalog")
-    fun getGoods(@Path("retailPointId") retailPointId: String, @Query("catalogNames") catalogs: String = "INVENTORY"): Single<ResponseBody>
+    @GET("v1/retail-point/{retailPointId}/catalog/INVENTORY")
+    fun getGoods(@Path("retailPointId") retailPointId: String): Single<GoodItemResponse>
 
     @POST("v1/retail-point/{retailPointId}/catalog")
     fun addGood(@Path("retailPointId") retailPointId: String, @Body item: GoodItem): Single<GoodItem>

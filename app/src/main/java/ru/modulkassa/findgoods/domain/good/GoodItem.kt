@@ -1,8 +1,5 @@
 package ru.modulkassa.findgoods.domain.good
 
-import ru.modulkassa.findgoods.domain.network.dto.CatalogEntity
-import ru.modulkassa.findgoods.domain.network.dto.CatalogType
-import ru.modulkassa.findgoods.domain.network.dto.CatalogType.INVENTORY
 import java.math.BigDecimal
 
 
@@ -17,14 +14,7 @@ data class GoodItem(
 		val vatTag: Any, //null
 		val taxMode: Any, //null
         val measure: Measure
-) : CatalogEntity() {
-    override val catalogType: CatalogType
-        get() = INVENTORY
-
-    override fun getId(): String {
-        return inventCode
-    }
-}
+)
 
 enum class Measure(
     val shortName: String,

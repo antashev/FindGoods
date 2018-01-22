@@ -1,7 +1,5 @@
 package ru.modulkassa.findgoods.domain.good.di
 
-import ru.modulkassa.findgoods.domain.good.CatalogJsonStream
-import ru.modulkassa.findgoods.domain.good.CommandExecutor
 import ru.modulkassa.findgoods.domain.good.GoodItemSyncManager
 import ru.modulkassa.findgoods.domain.good.GoodItemSyncManagerImpl
 import ru.modulkassa.findgoods.domain.repository.GoodItemRepository
@@ -15,7 +13,5 @@ class GoodItemSyncModule : Module() {
         bind(GoodItemSyncManager::class.java).to(
             GoodItemSyncManagerImpl::class.java)
         bind(GoodItemRepository::class.java).toInstance(GoodItemRepository())
-        bind(CatalogJsonStream::class.java)
-        bind(CommandExecutor::class.java)
     }
 }
