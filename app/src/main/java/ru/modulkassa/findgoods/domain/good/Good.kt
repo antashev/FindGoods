@@ -3,7 +3,7 @@ package ru.modulkassa.findgoods.domain.good
 import java.math.BigDecimal
 
 
-data class GoodItem(
+data class Good(
 		val inventCode: String, //10001
 		val name: String, //Молоко Лебедевское, 2,5%
 		val barcode: String, //10001

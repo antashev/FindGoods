@@ -20,7 +20,7 @@ class GoodListPresenter @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 Timber.i("-------->OK ")
-
+                viewState.updateItems(it)
             },{
                Timber.i("--------> $it")
             })

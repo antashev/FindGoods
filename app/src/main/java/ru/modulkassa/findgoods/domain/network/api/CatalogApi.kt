@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
-import ru.modulkassa.findgoods.domain.good.GoodItem
+import ru.modulkassa.findgoods.domain.good.Good
 import ru.modulkassa.findgoods.domain.network.dto.GoodItemResponse
 
 interface CatalogApi {
@@ -15,9 +15,9 @@ interface CatalogApi {
     fun getGoods(@Path("retailPointId") retailPointId: String): Single<GoodItemResponse>
 
     @POST("v1/retail-point/{retailPointId}/catalog")
-    fun addGood(@Path("retailPointId") retailPointId: String, @Body item: GoodItem): Single<GoodItem>
+    fun addGood(@Path("retailPointId") retailPointId: String, @Body item: Good): Single<Good>
 
     @PUT("v1/retail-point/{retailPointId}/catalog")
-    fun updateGood(@Path("retailPointId") retailPointId: String, @Body item: GoodItem): Single<GoodItem>
+    fun updateGood(@Path("retailPointId") retailPointId: String, @Body item: Good): Single<Good>
 
 }
