@@ -5,15 +5,27 @@ import android.support.v7.widget.RecyclerView.ViewHolder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.item_good.view.code
+import kotlinx.android.synthetic.main.item_good.view.minPrice
 import kotlinx.android.synthetic.main.item_good.view.name
+import kotlinx.android.synthetic.main.item_good.view.price
 import ru.modulkassa.findgoods.R
 import ru.modulkassa.findgoods.domain.good.Good
+import timber.log.Timber
 
 class GoodListAdapter(
     val items: ArrayList<Good>,
     val listener: (item: Good) -> Unit
-) : Adapter<GoodItemListViewHolder>() {
-    override fun onBindViewHolder(holder: GoodItemListViewHolder, position: Int) {
+) : Adapter<ListViewHolder>() {
+
+    companion object {
+        const val ITEM = 0
+        const val LOADING = 1
+    }
+
+    var loading = false
+
+    override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         holder.bind(items[position], listener)
     }
 
@@ -21,22 +33,44 @@ class GoodListAdapter(
         return items.size
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GoodItemListViewHolder {
-        val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_good, parent, false)
-        return GoodItemListViewHolder(itemView)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
+        return if (viewType == ITEM) {
+            val itemView = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_good, parent, false)
+            GoodItemListViewHolder(itemView)
+        } else {
+            val itemView = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_load, parent, false)
+            LoadingViewHolder(itemView)
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        val count = items.size - 1
+        return if (position == count && loading) LOADING else ITEM
     }
 
     fun updateItems(items: List<Good>) {
         this.items.clear()
+        addItems(items)
+    }
+
+    fun addItems(items: List<Good>) {
         this.items.addAll(items)
         notifyDataSetChanged()
     }
 }
 
-class GoodItemListViewHolder(itemView: View) : ViewHolder(itemView) {
-    fun bind(item: Good, listener: (item: Good) -> Unit) = with(itemView) {
+sealed class ListViewHolder(itemView: View): ViewHolder(itemView) {
+    open fun bind(item: Good, listener: (item: Good) -> Unit) {}
+}
+class GoodItemListViewHolder(itemView: View) : ListViewHolder(itemView) {
+    override fun bind(item: Good, listener: (item: Good) -> Unit) = with(itemView) {
         name.text = item.name
+        code.text = item.inventCode
+        price.text = item.price.toPlainString() + "\u20BD"
+        minPrice.text = item.minPrice.toPlainString() + "\u20BD"
         setOnClickListener { listener(item) }
     }
 }
+class LoadingViewHolder(itemView: View): ListViewHolder(itemView)

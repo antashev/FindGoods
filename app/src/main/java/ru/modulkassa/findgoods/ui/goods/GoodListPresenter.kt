@@ -15,14 +15,40 @@ class GoodListPresenter @Inject constructor(
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        goodItemSyncManager.downloadItem()
+        goodItemSyncManager.downloadItems()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                Timber.i("-------->OK ")
                 viewState.updateItems(it)
             },{
-               Timber.i("--------> $it")
+               Timber.i("Error $it")
             })
     }
+
+    fun refreshItems() {
+        goodItemSyncManager.downloadItems()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                viewState.updateItems(it)
+                viewState.hideSwipeProgress()
+            },{
+                Timber.i("Error $it")
+            })
+    }
+
+    fun downloadNext() {
+        Timber.i("---------------------next")
+        goodItemSyncManager.downloadNextItems()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                viewState.addItems(it)
+                viewState.hideLoadMoreProgress()
+            },{
+                Timber.i("Error $it")
+            })
+    }
+
+
 }
