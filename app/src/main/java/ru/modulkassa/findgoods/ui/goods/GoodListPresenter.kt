@@ -38,7 +38,6 @@ class GoodListPresenter @Inject constructor(
     }
 
     fun downloadNext() {
-        Timber.i("---------------------next")
         goodItemSyncManager.downloadNextItems()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -50,5 +49,8 @@ class GoodListPresenter @Inject constructor(
             })
     }
 
+    fun needDownloadMore(totalItemCount: Int): Boolean {
+        return totalItemCount < goodItemSyncManager.getTotalCount()
+    }
 
 }

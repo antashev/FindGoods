@@ -69,7 +69,7 @@ class GoodItemListViewHolder(itemView: View) : ListViewHolder(itemView) {
         name.text = item.name
         code.text = item.inventCode
         price.text = item.price.toPlainString() + "\u20BD"
-        minPrice.text = item.minPrice.toPlainString() + "\u20BD"
+        minPrice.text = item.minPrice?.toPlainString() + "\u20BD"
         setOnClickListener { listener(item) }
     }
 }

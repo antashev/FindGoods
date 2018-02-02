@@ -12,6 +12,7 @@ interface GoodItemSyncManager {
     fun downloadNextItems(): Single<List<Good>>
     fun addItem(item: Good): Single<Good>
     fun updateItem(item: Good): Single<Good>
+    fun getTotalCount(): Long
 }
 
 class GoodItemSyncManagerImpl @Inject constructor(
@@ -19,13 +20,14 @@ class GoodItemSyncManagerImpl @Inject constructor(
     private val retailPointRepo: RetailPointRepository
 ): GoodItemSyncManager {
     companion object {
-        const val BULK_SIZE = 30
+        const val BULK_SIZE = 20
     }
-    var totalCount: Long = 0
+    var total: Long = 0
     var currentPos: Int = 0
 
     override fun downloadItems(): Single<List<Good>> {
-        return download(0)
+        currentPos = 0
+        return download(currentPos)
     }
 
     override fun downloadNextItems(): Single<List<Good>> {
@@ -40,11 +42,15 @@ class GoodItemSyncManagerImpl @Inject constructor(
         TODO("not implemented")
     }
 
+    override fun getTotalCount(): Long {
+        return total
+    }
+
     private fun download(start: Int): Single<List<Good>> {
         return api
             .getGoods(retailPointRepo.getRetailPoint(), start, BULK_SIZE)
             .map {
-                totalCount = it.totalCount
+                total = it.totalCount
                 it.data
             }
             .doOnSuccess {

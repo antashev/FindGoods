@@ -23,7 +23,7 @@ class GoodListFragment: BaseFragment(), GoodListView {
     @InjectPresenter
     lateinit var presenter: GoodListPresenter
     lateinit var adapter: GoodListAdapter
-    private var loading: Boolean = true
+
     @ProvidePresenter
     fun providePresenter(): GoodListPresenter {
         return Toothpick.openScope(DI.MAIN_ACTIVITY).getInstance(GoodListPresenter::class.java)
@@ -49,7 +49,9 @@ class GoodListFragment: BaseFragment(), GoodListView {
                 super.onScrolled(recyclerView, dx, dy)
                 val totalItemCount = layoutManager.itemCount
                 val lastVisibleItem = layoutManager.findLastVisibleItemPosition()
-                // todo add check if it last page
+                if(!presenter.needDownloadMore(totalItemCount)) {
+                    return
+                }
                 if (!adapter.loading && totalItemCount <= (lastVisibleItem + 4)) {
                     presenter.downloadNext()
                     adapter.loading = true
