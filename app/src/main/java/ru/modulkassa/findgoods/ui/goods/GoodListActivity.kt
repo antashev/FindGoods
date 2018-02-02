@@ -1,6 +1,7 @@
 package ru.modulkassa.findgoods.ui.goods
 
 import android.os.Bundle
+import android.view.Menu
 import ru.modulkassa.findgoods.di.DI
 import ru.modulkassa.findgoods.domain.good.di.GoodItemSyncModule
 import ru.modulkassa.findgoods.ui.shared.BaseActivity

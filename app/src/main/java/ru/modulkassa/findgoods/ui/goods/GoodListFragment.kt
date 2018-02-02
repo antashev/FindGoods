@@ -1,20 +1,26 @@
 package ru.modulkassa.findgoods.ui.goods
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.RecyclerView.OnScrollListener
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.fragment_good_list.goodsList
 import kotlinx.android.synthetic.main.fragment_good_list.swipeContainer
+import kotlinx.android.synthetic.main.fragment_good_list.toolbar
 import ru.modulkassa.findgoods.R
 import ru.modulkassa.findgoods.di.DI
 import ru.modulkassa.findgoods.domain.good.Good
+import ru.modulkassa.findgoods.ui.sacn.ScanActivity
 import ru.modulkassa.findgoods.ui.shared.BaseFragment
 import timber.log.Timber
 import toothpick.Toothpick
@@ -27,6 +33,11 @@ class GoodListFragment: BaseFragment(), GoodListView {
     @ProvidePresenter
     fun providePresenter(): GoodListPresenter {
         return Toothpick.openScope(DI.MAIN_ACTIVITY).getInstance(GoodListPresenter::class.java)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
@@ -58,6 +69,17 @@ class GoodListFragment: BaseFragment(), GoodListView {
                 }
             }
         })
+
+        toolbar.inflateMenu(R.menu.menu_goods_list)
+        toolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.scan_barcode -> {
+                    startActivity(Intent(context, ScanActivity::class.java))
+                }
+                else -> return@setOnMenuItemClickListener false
+            }
+            true
+        }
     }
 
     override fun addItems(items: List<Good>) {

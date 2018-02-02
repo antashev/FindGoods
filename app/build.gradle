@@ -48,7 +48,7 @@ dependencies {
     implementation 'org.danilopianini:gson-extras:0.2.1'
 
     // zxing
-    implementation 'com.journeyapps:zxing-android-embedded:3.5.0'
+    implementation 'me.dm7.barcodescanner:zxing:1.9.8'
 
     // DI
     implementation 'com.github.stephanenicolas.toothpick:toothpick-runtime:1.1.1'
