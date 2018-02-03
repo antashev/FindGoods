@@ -7,7 +7,9 @@ interface GoodListView: MvpView {
     fun showError(throwable: Throwable)
     fun updateItems(items: List<Good>)
     fun showProgress()
+    fun hideProgress()
     fun hideSwipeProgress()
     fun hideLoadMoreProgress()
     fun addItems(items: List<Good>)
+    fun showGoodDetail(goodJson: String)
 }

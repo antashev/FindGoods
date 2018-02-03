@@ -14,4 +14,43 @@
         <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
     </style>
 
+    <style name="ButtonDarkPressed">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0sp</item>
+        <item name="android:textColor">@color/black_72</item>
+    </style>
+
+    <style name="ButtonLightPressed">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">0sp</item>
+        <item name="android:textColor">@color/white_two</item>
+    </style>
+
+    <style name="TextAppearance.Modul.Widget.Button" parent="ButtonDarkPressed"/>
+
+    <style name="TextAppearance.Modul.Widget.Button.Primary" parent="ButtonLightPressed"/>
+
+    <style name="Widget.Modul.Button" parent="Base.Widget.Modul.Button">
+        <item name="android:textAppearance">@style/TextAppearance.Modul.Widget.Button</item>
+    </style>
+
+    <style name="Base.Widget.Modul.Button" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/btn_default_module</item>
+        <item name="colorButtonNormal">@color/white_two</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="Widget.Modul.Button.Primary" parent="Widget.Modul.Button">
+        <item name="android:textAppearance">@style/TextAppearance.Modul.Widget.Button.Primary</item>
+        <item name="theme">@style/Theme.Modul.Button.Primary</item>
+    </style>
+
+    <style name="Theme.Modul.Button.Primary" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="colorButtonNormal">@color/colorPrimary</item>
+    </style>
+
 </resources>

@@ -1,6 +1,7 @@
-package ru.modulkassa.findgoods.ui.sacn
+package ru.modulkassa.findgoods.ui.scan
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
@@ -15,6 +16,9 @@ import timber.log.Timber
 class ScanActivity : BaseActivity(), ResultHandler {
     companion object {
         private const val ZXING_CAMERA_PERMISSION = 1
+        const val BARCODE_RESULT = "BARCODE_RESULT"
+        const val SUCCESS = 1
+        const val CANCEL = 2
     }
 
     lateinit var scanView: ZXingScannerView
@@ -35,7 +39,7 @@ class ScanActivity : BaseActivity(), ResultHandler {
                                             grantResults: IntArray) {
         if (requestCode == ZXING_CAMERA_PERMISSION) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Timber.i("------------ok")
+                Timber.i("camera is available")
             } else {
                 Toast.makeText(this, "Please grant camera permission to use the QR Scanner",
                     Toast.LENGTH_SHORT).show()
@@ -46,6 +50,10 @@ class ScanActivity : BaseActivity(), ResultHandler {
 
     override fun handleResult(result: Result) {
         Timber.i("Text from scanner: ${result.text}")
+        val intent = Intent()
+        intent.putExtra(BARCODE_RESULT, result.text)
+        setResult(SUCCESS, intent)
+        finish()
     }
 
     override fun onResume() {

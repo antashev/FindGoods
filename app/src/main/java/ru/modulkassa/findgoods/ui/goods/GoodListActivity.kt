@@ -1,8 +1,8 @@
 package ru.modulkassa.findgoods.ui.goods
 
 import android.os.Bundle
-import android.view.Menu
 import ru.modulkassa.findgoods.di.DI
+import ru.modulkassa.findgoods.domain.good.di.FindGoodsModule
 import ru.modulkassa.findgoods.domain.good.di.GoodItemSyncModule
 import ru.modulkassa.findgoods.ui.shared.BaseActivity
 import toothpick.Toothpick
@@ -11,7 +11,7 @@ class GoodListActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Toothpick.openScopes(DI.APP_SCOPE, DI.MAIN_ACTIVITY).apply {
-            installModules(GoodItemSyncModule())
+            installModules(GoodItemSyncModule(), FindGoodsModule())
         }
 
         super.onCreate(savedInstanceState)

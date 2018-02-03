@@ -1,10 +1,8 @@
 package ru.modulkassa.findgoods.domain.good
 
 import io.reactivex.Single
-import ru.modulkassa.findgoods.domain.network.dto.GoodItemResponse
 import ru.modulkassa.findgoods.domain.repository.RetailPointRepository
 import ru.modulkassa.goods.core.api.CatalogApi
-import timber.log.Timber
 import javax.inject.Inject
 
 interface GoodItemSyncManager {
@@ -39,7 +37,9 @@ class GoodItemSyncManagerImpl @Inject constructor(
     }
 
     override fun updateItem(item: Good): Single<Good> {
-        TODO("not implemented")
+        return api
+            .updateGood(retailPointRepo.selectedPointId(), item)
+            .map { it.catalogEntity.toDomain() }
     }
 
     override fun getTotalCount(): Long {
@@ -48,7 +48,7 @@ class GoodItemSyncManagerImpl @Inject constructor(
 
     private fun download(start: Int): Single<List<Good>> {
         return api
-            .getGoods(retailPointRepo.getRetailPoint(), start, BULK_SIZE)
+            .getGoods(retailPointRepo.selectedPointId(), start, BULK_SIZE)
             .map {
                 total = it.totalCount
                 it.data

@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">FindGoods</string>
+    <string name="support_label">Если у вас появились вопросы –\n звоните 8 (800) 100–66–62 или напишите\n нам письмо на modulkassa@modulbank.ru</string>
+    <string name="login_input_credentials">Укажите логин и пароль\n от аккаунта МодульКассы</string>
+    <string name="error_cant_upload">Не удалось применить изменения</string>
+    <string name="error_cant_download_points">Не удалось загрузить точки</string>
+    <string name="error_cant_login">Не удалось авторизоваться</string>
+    <string name="error_cant_download_goods">Не удалось загрузить товары</string>
+    <string name="empty_good_list">Нет товаров.\n Нажмите на иконку \"Сканировать\" чтобы добавить первый товаров в справочник.</string>
 </resources>

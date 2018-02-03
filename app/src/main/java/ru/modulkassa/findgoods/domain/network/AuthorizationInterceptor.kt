@@ -14,7 +14,7 @@ class AuthorizationInterceptor(
         var request = chain.request()
 
         if (repo.hasAccount()) {
-            val credentials = Credentials.basic(repo.getLogin(), repo.getPassword())
+            val credentials = Credentials.basic(repo.login(), repo.password())
             request = request.newBuilder().addHeader("Authorization", credentials).build()
         }
 

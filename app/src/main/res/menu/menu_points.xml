@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/scan_barcode"
-        android:icon="@drawable/ic_scan_barcode"
+        android:id="@+id/sync_points"
+        android:icon="@drawable/ic_sync"
         app:showAsAction="ifRoom"
         android:title=""/>
 </menu>

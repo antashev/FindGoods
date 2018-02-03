@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.item_good.view.name
 import kotlinx.android.synthetic.main.item_good.view.price
 import ru.modulkassa.findgoods.R
 import ru.modulkassa.findgoods.domain.good.Good
-import timber.log.Timber
+import ru.modulkassa.findgoods.ui.shared.toCurrencyString
 
 class GoodListAdapter(
     val items: ArrayList<Good>,
@@ -55,6 +55,14 @@ class GoodListAdapter(
         addItems(items)
     }
 
+    fun updateItem(item: Good) {
+        val index = items.indexOfFirst { it.inventCode == item.inventCode }
+        if (index != -1) {
+            items[index] = item
+            notifyItemChanged(index)
+        }
+    }
+
     fun addItems(items: List<Good>) {
         this.items.addAll(items)
         notifyDataSetChanged()
@@ -67,9 +75,13 @@ sealed class ListViewHolder(itemView: View): ViewHolder(itemView) {
 class GoodItemListViewHolder(itemView: View) : ListViewHolder(itemView) {
     override fun bind(item: Good, listener: (item: Good) -> Unit) = with(itemView) {
         name.text = item.name
-        code.text = item.inventCode
-        price.text = item.price.toPlainString() + "\u20BD"
-        minPrice.text = item.minPrice?.toPlainString() + "\u20BD"
+        code.text = item.barcode
+        val priceText = "${item.price.toCurrencyString()} \u20BD"
+        price.text = priceText
+        item.minPrice?.let {
+            val minPriceText = "${it.toCurrencyString()} \u20BD"
+            minPrice.text = minPriceText
+        }
         setOnClickListener { listener(item) }
     }
 }
