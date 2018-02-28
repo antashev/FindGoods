@@ -144,6 +144,11 @@ class GoodListFragment: BaseFragment(), GoodListView {
             Snackbar.LENGTH_LONG).show()
     }
 
+    override fun showCantFindGoodError() {
+        Snackbar.make(root, getText(R.string.error_cant_find_good),
+            Snackbar.LENGTH_LONG).show()
+    }
+
     override fun updateItems(items: List<Good>) {
         if (items.isEmpty()) {
             emptyList.visibility = View.VISIBLE

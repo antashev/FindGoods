@@ -60,6 +60,9 @@ class GoodListAdapter(
         if (index != -1) {
             items[index] = item
             notifyItemChanged(index)
+        } else {
+            items.add(item)
+            notifyItemChanged(items.size - 1)
         }
     }
 

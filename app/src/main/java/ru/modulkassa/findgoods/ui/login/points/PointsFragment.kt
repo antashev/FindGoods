@@ -10,7 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
-import kotlinx.android.synthetic.main.fragment_points.points
+import kotlinx.android.synthetic.main.fragment_points.emptyList
+import kotlinx.android.synthetic.main.fragment_points.pointsList
 import kotlinx.android.synthetic.main.fragment_points.progressBar
 import kotlinx.android.synthetic.main.fragment_points.root
 import kotlinx.android.synthetic.main.fragment_points.toolbar
@@ -49,10 +50,10 @@ class PointsFragment : BaseFragment(), PointsView {
         adapter = PointsAdapter(ArrayList()) { point ->
             presenter.saveSelected(point)
         }
-        points.adapter = adapter
+        pointsList.adapter = adapter
         val layoutManager = LinearLayoutManager(context)
-        points.layoutManager = layoutManager
-        points.addItemDecoration(DividerItemDecoration(context, layoutManager.orientation))
+        pointsList.layoutManager = layoutManager
+        pointsList.addItemDecoration(DividerItemDecoration(context, layoutManager.orientation))
 
         toolbar.inflateMenu(R.menu.menu_points)
         toolbar.setOnMenuItemClickListener { menuItem ->
@@ -76,7 +77,11 @@ class PointsFragment : BaseFragment(), PointsView {
     }
 
     override fun updateSelection(points: List<RetailPoint>) {
-        adapter.updateItems(points)
+        if (points.isNotEmpty()) {
+            emptyList.visibility = View.GONE
+            pointsList.visibility = View.VISIBLE
+            adapter.updateItems(points)
+        }
     }
 
     override fun showError() {
@@ -86,11 +91,16 @@ class PointsFragment : BaseFragment(), PointsView {
 
     override fun showProgress() {
         progressBar.visibility = View.VISIBLE
-        points.visibility = View.GONE
+        pointsList.visibility = View.GONE
+        emptyList.visibility = View.GONE
     }
 
     override fun hideProgress() {
         progressBar.visibility = View.GONE
-        points.visibility = View.VISIBLE
+        if (adapter.itemCount > 0) {
+            pointsList.visibility = View.VISIBLE
+        } else {
+            emptyList.visibility = View.VISIBLE
+        }
     }
 }

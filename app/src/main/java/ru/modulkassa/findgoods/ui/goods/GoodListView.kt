@@ -5,6 +5,7 @@ import ru.modulkassa.findgoods.domain.good.Good
 
 interface GoodListView: MvpView {
     fun showError(throwable: Throwable)
+    fun showCantFindGoodError()
     fun updateItems(items: List<Good>)
     fun showProgress()
     fun hideProgress()

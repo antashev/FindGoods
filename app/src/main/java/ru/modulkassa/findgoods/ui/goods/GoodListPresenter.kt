@@ -73,15 +73,7 @@ class GoodListPresenter @Inject constructor(
         findGoods.find(barcode)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ name ->
-                val good = Good(
-                    inventCode = barcode,
-                    name = name,
-                    barcode = barcode,
-                    price = BigDecimal.ZERO,
-                    minPrice = BigDecimal.ZERO,
-                    measure = PCS
-                )
+            .subscribe({ good ->
                 viewState.hideProgress()
                 showDetail(good)
             },{

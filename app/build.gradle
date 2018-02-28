@@ -15,7 +15,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "MODULKASSA_ENDPOINT", '"https://rc.dev.avanpos.com/api/"'
-        buildConfigField "String", "RATEANDGOODS_ENDPOINT", '"https://api.ratengoods.com/data-api/v0.9/"'
+        buildConfigField "String", "RATEANDGOODS_ENDPOINT", '"https://api.ratengoods.com/data-api/v0.10/"'
         buildConfigField "String", "STORAGE_ENDPOINT", '"https://storage.avanpos.com/inv/"'
         buildConfigField "String", "RATEANDGOODS_TOKEN", keysProperties['RateAndGoodsToken']
         vectorDrawables.useSupportLibrary = true

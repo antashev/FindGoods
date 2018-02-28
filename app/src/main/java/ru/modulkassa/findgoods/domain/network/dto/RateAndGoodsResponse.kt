@@ -15,11 +15,18 @@ data class Pagination(
 )
 
 data class RgFindResult(
-    val identifiers: List<FindRequest>,
-    val title: String
+    val identifiers: List<GoodIdentifier>,
+    val title: String,
+    val alcohol: Boolean,
+    val measure: RgMeasure
 )
 
-data class FindRequest(
+data class RgMeasure(
+    val count: String,
+    val units: String
+)
+
+data class GoodIdentifier(
     val key: String,
     val type: String
 )

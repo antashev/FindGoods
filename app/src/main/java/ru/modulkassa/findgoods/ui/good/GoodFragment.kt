@@ -71,13 +71,11 @@ class GoodFragment : BaseFragment(), GoodDetailView {
             minPrice.setText(good.minPrice?.toCurrencyString())
 
             save.setOnClickListener {
-                val newGood = Good(
-                    inventCode = good.inventCode,
+                val newGood = good.copy(
                     name = name.text.toString(),
                     barcode = barcode.text.toString(),
                     price = price.text.toBigDecimal(),
-                    minPrice = minPrice.text.toBigDecimal(),
-                    measure = good.measure
+                    minPrice = minPrice.text.toBigDecimal()
                 )
                 presenter.updateGood(newGood)
             }

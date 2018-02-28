@@ -10,7 +10,8 @@ data class Good(
     val barcode: String = "", //10001
     val price: BigDecimal = BigDecimal.ZERO, //52
     val minPrice: BigDecimal? = BigDecimal.ZERO, //52
-//    val volume: BigDecimal, //null
+    val volume: BigDecimal? = null, //null
+    val alcoholType: AlcoholType? = null,
 //    val alcVolume: BigDecimal, //null
 //    val vatTag: Any, //null
 //    val taxMode: Any, //null
@@ -26,4 +27,10 @@ enum class Measure(
     PCS("pcs", "шт", false),
     KG("kg", "кг", true),
     LTR("ltr", "л", true)
+}
+
+enum class AlcoholType {
+    NO_ALCOHOL, // не алкоголь
+    LIGHT_ALCOHOL, // слабый алкоголь
+    ALCOHOL // крепкий алкоголь
 }
