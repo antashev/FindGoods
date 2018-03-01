@@ -4,12 +4,13 @@ apply plugin: 'kotlin-android-extensions'
 
 Properties properties = new Properties()
 File propertiesFile = project.rootProject.file('local.properties')
+def rgToken = null
 if (propertiesFile.exists()) {
     properties.load(propertiesFile.newDataInputStream())
+    rgToken = properties.getProperty("RateAndGoodsToken")
+} else {
+    rgToken = RateAndGoodsToken
 }
-def rgToken = RateAndGoodsToken ?:
-    properties.getProperty("RateAndGoodsToken")
-
 
 android {
     compileSdkVersion 27
@@ -33,10 +34,15 @@ android {
         }
     }
 
-    applicationVariants.all { variant ->
-        variant.outputs.all {
-            outputFileName = "${project.name}-${variant.name}-${variant.versionName}.apk"
-        }
+//    applicationVariants.all { variant ->
+//        variant.outputs.all {
+//            outputFileName = "${project.name}-${variant.name}-${variant.versionName}.apk"
+//        }
+//    }
+
+    lintOptions {
+        abortOnError false
+        xmlOutput file("./build/reports/lint-results.xml")
     }
 }
 
