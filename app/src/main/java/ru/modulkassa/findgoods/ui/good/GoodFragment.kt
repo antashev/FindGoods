@@ -43,7 +43,7 @@ class GoodFragment : BaseFragment(), GoodDetailView {
 
     @ProvidePresenter
     fun providePresenter(): GoodDetailPresenter {
-        return Toothpick.openScope(DI.MAIN_ACTIVITY).getInstance(GoodDetailPresenter::class.java)
+        return Toothpick.openScope(DI.GOOD_SCOPE).getInstance(GoodDetailPresenter::class.java)
     }
 
     @Inject

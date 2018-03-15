@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 Properties properties = new Properties()
 File propertiesFile = project.rootProject.file('local.properties')
@@ -21,9 +22,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "MODULKASSA_ENDPOINT", '"https://rc.dev.avanpos.com/api/"'
         buildConfigField "String", "RATEANDGOODS_ENDPOINT", '"https://api.ratengoods.com/data-api/v0.10/"'
-        buildConfigField "String", "STORAGE_ENDPOINT", '"https://storage.avanpos.com/inv/"'
         buildConfigField "String", "RATEANDGOODS_TOKEN", rgToken
         vectorDrawables.useSupportLibrary = true
     }
@@ -31,6 +30,21 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    flavorDimensions "type"
+    productFlavors {
+        production {
+            dimension "type"
+            applicationIdSuffix ".prod"
+            buildConfigField "String", "MODULKASSA_ENDPOINT", '"https://service.modulpos.ru/api/"'
+            buildConfigField "String", "STORAGE_ENDPOINT", '"https://storage.avanpos.com/inv/"'
+        }
+        rc {
+            dimension "type"
+            applicationIdSuffix ".rc"
+            buildConfigField "String", "MODULKASSA_ENDPOINT", '"https://rc.dev.avanpos.com/api/"'
+            buildConfigField "String", "STORAGE_ENDPOINT", '"https://rc.dev.avanpos.com/api/inv/"'
         }
     }
 

@@ -42,7 +42,7 @@ class GoodListFragment: BaseFragment(), GoodListView {
 
     @ProvidePresenter
     fun providePresenter(): GoodListPresenter {
-        return Toothpick.openScope(DI.MAIN_ACTIVITY).getInstance(GoodListPresenter::class.java)
+        return Toothpick.openScope(DI.GOOD_SCOPE).getInstance(GoodListPresenter::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

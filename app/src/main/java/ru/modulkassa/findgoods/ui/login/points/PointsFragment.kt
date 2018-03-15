@@ -67,8 +67,11 @@ class PointsFragment : BaseFragment(), PointsView {
         }
     }
 
-    override fun gotoGoodsScreen() {
+    override fun gotoGoodsScreen(finish: Boolean) {
         startActivity(Intent(context, GoodListActivity::class.java))
+        if (finish) {
+            activity?.finish()
+        }
     }
 
     override fun onResume() {

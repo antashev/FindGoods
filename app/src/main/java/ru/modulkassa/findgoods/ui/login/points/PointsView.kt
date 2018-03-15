@@ -6,7 +6,7 @@ import ru.modulkassa.findgoods.domain.point.RetailPoint
 interface PointsView : MvpView {
     fun updateSelection(points: List<RetailPoint>)
     fun showError()
-    fun gotoGoodsScreen()
+    fun gotoGoodsScreen(finish: Boolean)
     fun showProgress()
     fun hideProgress()
 }

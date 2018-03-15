@@ -10,7 +10,7 @@ import toothpick.Toothpick
 class GoodListActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Toothpick.openScopes(DI.APP_SCOPE, DI.MAIN_ACTIVITY).apply {
+        Toothpick.openScopes(DI.APP_SCOPE, DI.GOOD_SCOPE).apply {
             installModules(GoodItemSyncModule(), FindGoodsModule())
         }
 
@@ -21,7 +21,7 @@ class GoodListActivity : BaseActivity() {
     override fun onDestroy() {
         super.onDestroy()
         if(isFinishing) {
-            Toothpick.closeScope(DI.MAIN_ACTIVITY)
+            Toothpick.closeScope(DI.GOOD_SCOPE)
         }
     }
 }

@@ -23,7 +23,7 @@ class PointsPresenter @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ points ->
                 if (points.size == 1) {
-                    saveSelected(points[0])
+                    saveSelected(points[0], true)
                 } else {
                     viewState.updateSelection(points)
                 }
@@ -34,8 +34,8 @@ class PointsPresenter @Inject constructor(
             })
     }
 
-    fun saveSelected(point: RetailPoint) {
+    fun saveSelected(point: RetailPoint, finish: Boolean = false) {
         retailPointRepository.setSelectedPointId(point.id)
-        viewState.gotoGoodsScreen()
+        viewState.gotoGoodsScreen(finish)
     }
 }
