@@ -6,11 +6,14 @@ apply plugin: 'kotlin-kapt'
 Properties properties = new Properties()
 File propertiesFile = project.rootProject.file('local.properties')
 def rgToken = null
+def rcRgToken = null
 if (propertiesFile.exists()) {
     properties.load(propertiesFile.newDataInputStream())
     rgToken = properties.getProperty("RateAndGoodsToken")
+    rcRgToken = properties.getProperty("rcRateAndGoodsToken")
 } else {
     rgToken = RateAndGoodsToken
+    rcRgToken = rcRateAndGoodsToken
 }
 
 android {
@@ -23,7 +26,6 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "RATEANDGOODS_ENDPOINT", '"https://api.ratengoods.com/data-api/v0.10/"'
-        buildConfigField "String", "RATEANDGOODS_TOKEN", rgToken
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
@@ -39,12 +41,14 @@ android {
             applicationIdSuffix ".prod"
             buildConfigField "String", "MODULKASSA_ENDPOINT", '"https://service.modulpos.ru/api/"'
             buildConfigField "String", "STORAGE_ENDPOINT", '"https://storage.avanpos.com/inv/"'
+            buildConfigField "String", "RATEANDGOODS_TOKEN", rgToken
         }
         rc {
             dimension "type"
             applicationIdSuffix ".rc"
             buildConfigField "String", "MODULKASSA_ENDPOINT", '"https://rc.dev.avanpos.com/api/"'
             buildConfigField "String", "STORAGE_ENDPOINT", '"https://rc.dev.avanpos.com/api/inv/"'
+            buildConfigField "String", "RATEANDGOODS_TOKEN", rcRgToken
         }
     }
 
