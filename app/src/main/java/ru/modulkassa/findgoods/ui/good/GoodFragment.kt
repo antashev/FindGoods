@@ -70,7 +70,7 @@ class GoodFragment : BaseFragment(), GoodDetailView {
             price.setText(good.price?.toCurrencyString())
             barcode.setText(good.barcode)
             minPrice.setText(good.minPrice?.toCurrencyString())
-            val filters = arrayOf(DecimalDigitsInputFilter(6, 2))
+            val filters = arrayOf(DecimalDigitsInputFilter(9, 2))
             price.filters = filters
             minPrice.filters = filters
 
