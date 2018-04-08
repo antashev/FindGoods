@@ -8,7 +8,7 @@ data class Good(
     val inventCode: String = "", //10001
     val name: String = "", //Молоко Лебедевское, 2,5%
     val barcode: String = "", //10001
-    val price: BigDecimal = BigDecimal.ZERO, //52
+    val price: BigDecimal? = BigDecimal.ZERO, //52
     val minPrice: BigDecimal? = BigDecimal.ZERO, //52
     val volume: BigDecimal? = null, //null
     val alcoholType: AlcoholType? = null,

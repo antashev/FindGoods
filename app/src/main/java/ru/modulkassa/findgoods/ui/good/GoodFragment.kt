@@ -66,7 +66,7 @@ class GoodFragment : BaseFragment(), GoodDetailView {
         if (goodJson != null) {
             val good = gson.fromJson(goodJson, Good::class.java)
             name.setText(good.name)
-            price.setText(good.price.toCurrencyString())
+            price.setText(good.price?.toCurrencyString())
             barcode.setText(good.barcode)
             minPrice.setText(good.minPrice?.toCurrencyString())
 

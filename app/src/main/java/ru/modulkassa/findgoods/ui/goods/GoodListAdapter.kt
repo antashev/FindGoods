@@ -79,8 +79,10 @@ class GoodItemListViewHolder(itemView: View) : ListViewHolder(itemView) {
     override fun bind(item: Good, listener: (item: Good) -> Unit) = with(itemView) {
         name.text = item.name
         code.text = item.barcode
-        val priceText = "${item.price.toCurrencyString()} \u20BD"
-        price.text = priceText
+        if (item.price != null) {
+            val priceText = "${item.price.toCurrencyString()} \u20BD"
+            price.text = priceText
+        }
         item.minPrice?.let {
             val minPriceText = "${it.toCurrencyString()} \u20BD"
             minPrice.text = minPriceText
