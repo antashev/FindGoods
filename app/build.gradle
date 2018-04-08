@@ -45,6 +45,8 @@ android {
             buildConfigField "String", "MODULKASSA_ENDPOINT", '"https://service.modulpos.ru/api/"'
             buildConfigField "String", "STORAGE_ENDPOINT", '"https://storage.avanpos.com/inv/"'
             buildConfigField "String", "RATEANDGOODS_TOKEN", rgToken
+            buildConfigField "boolean", "USE_CRASHLYTICS", "true"
+            ext.enableCrashlytics = true
         }
         rc {
             dimension "type"
@@ -52,6 +54,8 @@ android {
             buildConfigField "String", "MODULKASSA_ENDPOINT", '"https://rc.dev.avanpos.com/api/"'
             buildConfigField "String", "STORAGE_ENDPOINT", '"https://rc.dev.avanpos.com/api/inv/"'
             buildConfigField "String", "RATEANDGOODS_TOKEN", rcRgToken
+            buildConfigField "boolean", "USE_CRASHLYTICS", "false"
+            ext.enableCrashlytics = false
         }
     }
 

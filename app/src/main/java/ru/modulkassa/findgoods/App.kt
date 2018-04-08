@@ -15,7 +15,9 @@ class App: Application() {
     override fun onCreate() {
         super.onCreate()
 
-        Fabric.with(this, Crashlytics())
+        if (BuildConfig.USE_CRASHLYTICS) {
+            Fabric.with(this, Crashlytics())
+        }
         // todo install tree for release type
         Timber.plant(DebugTree())
 

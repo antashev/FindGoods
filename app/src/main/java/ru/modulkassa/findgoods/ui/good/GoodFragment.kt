@@ -21,6 +21,7 @@ import ru.modulkassa.findgoods.di.DI
 import ru.modulkassa.findgoods.domain.good.Good
 import ru.modulkassa.findgoods.ui.good.GoodActivity.Companion.GOOD_EXTRA
 import ru.modulkassa.findgoods.ui.shared.BaseFragment
+import ru.modulkassa.findgoods.ui.shared.DecimalDigitsInputFilter
 import ru.modulkassa.findgoods.ui.shared.toBigDecimal
 import ru.modulkassa.findgoods.ui.shared.toCurrencyString
 import toothpick.Toothpick
@@ -69,6 +70,9 @@ class GoodFragment : BaseFragment(), GoodDetailView {
             price.setText(good.price?.toCurrencyString())
             barcode.setText(good.barcode)
             minPrice.setText(good.minPrice?.toCurrencyString())
+            val filters = arrayOf(DecimalDigitsInputFilter(6, 2))
+            price.filters = filters
+            minPrice.filters = filters
 
             save.setOnClickListener {
                 val newGood = good.copy(
