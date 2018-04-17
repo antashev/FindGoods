@@ -10,6 +10,7 @@ class RetailPointRepository(
         private const val PASSWORD = "password"
         private const val LOGIN = "login"
         private const val SELECTED_POINT = "selected_point"
+        private const val SELECTED_POINT_NAME = "selected_point_name"
     }
 
     private val sharedPref = context.getSharedPreferences("retail_point_repo", Context.MODE_PRIVATE)
@@ -46,4 +47,13 @@ class RetailPointRepository(
             .putString(SELECTED_POINT, id)
             .apply()
     }
+
+    fun setPointName(name: String) {
+        sharedPref
+            .edit()
+            .putString(SELECTED_POINT_NAME, name)
+            .apply()
+    }
+
+    fun selectedPointName(): String = sharedPref.getString(SELECTED_POINT_NAME, "")
 }

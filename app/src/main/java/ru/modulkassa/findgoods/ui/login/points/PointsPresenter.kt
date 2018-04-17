@@ -36,6 +36,7 @@ class PointsPresenter @Inject constructor(
 
     fun saveSelected(point: RetailPoint, finish: Boolean = false) {
         retailPointRepository.setSelectedPointId(point.id)
+        retailPointRepository.setPointName(point.name)
         viewState.gotoGoodsScreen(finish)
     }
 }

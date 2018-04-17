@@ -13,4 +13,5 @@ interface GoodListView: MvpView {
     fun hideLoadMoreProgress()
     fun addItems(items: List<Good>)
     fun showGoodDetail(goodJson: String)
+    fun showPointName(name: String)
 }

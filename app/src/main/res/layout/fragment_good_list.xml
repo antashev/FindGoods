@@ -43,6 +43,24 @@
         android:text="@string/empty_good_list"
         android:layout_height="wrap_content"/>
 
+    <TextView
+        android:id="@+id/pointName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appbarLayout"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textSize="18sp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        tools:text="Название точки такое-то 12 eqwe 320 2-e0 -0do asd "
+        android:background="#E6E8E9"
+        android:layout_height="40dp"
+        />
+
+
     <android.support.v4.widget.SwipeRefreshLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/swipeContainer"
@@ -51,7 +69,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appbarLayout">
+        app:layout_constraintTop_toBottomOf="@id/pointName">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/goodsList"

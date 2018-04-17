@@ -8,19 +8,20 @@ import io.reactivex.schedulers.Schedulers
 import ru.modulkassa.findgoods.domain.good.FindGoods
 import ru.modulkassa.findgoods.domain.good.Good
 import ru.modulkassa.findgoods.domain.good.GoodItemSyncManager
-import ru.modulkassa.findgoods.domain.good.Measure.PCS
-import java.math.BigDecimal
+import ru.modulkassa.findgoods.domain.repository.RetailPointRepository
 import javax.inject.Inject
 
 @InjectViewState
 class GoodListPresenter @Inject constructor(
     private val goodItemSyncManager: GoodItemSyncManager,
     private val findGoods: FindGoods,
-    private val gson: Gson
+    private val gson: Gson,
+    private val repository: RetailPointRepository
 ): MvpPresenter<GoodListView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
+        viewState.showPointName(repository.selectedPointName())
         viewState.showProgress()
         goodItemSyncManager.downloadItems()
             .subscribeOn(Schedulers.io())

@@ -15,6 +15,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_good_list.emptyList
 import kotlinx.android.synthetic.main.fragment_good_list.goodsList
+import kotlinx.android.synthetic.main.fragment_good_list.pointName
 import kotlinx.android.synthetic.main.fragment_good_list.progressBar
 import kotlinx.android.synthetic.main.fragment_good_list.root
 import kotlinx.android.synthetic.main.fragment_good_list.swipeContainer
@@ -156,5 +157,13 @@ class GoodListFragment: BaseFragment(), GoodListView {
             emptyList.visibility = View.GONE
         }
         adapter.updateItems(items)
+    }
+
+    override fun showPointName(name: String) {
+        if (name.isEmpty()) {
+            pointName.visibility = View.GONE
+        } else {
+            pointName.text = name
+        }
     }
 }
