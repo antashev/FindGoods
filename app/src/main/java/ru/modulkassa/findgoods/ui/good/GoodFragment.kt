@@ -75,13 +75,15 @@ class GoodFragment : BaseFragment(), GoodDetailView {
             minPrice.filters = filters
 
             save.setOnClickListener {
-                val newGood = good.copy(
-                    name = name.text.toString(),
-                    barcode = barcode.text.toString(),
-                    price = price.text.toBigDecimal(),
-                    minPrice = minPrice.text.toBigDecimal()
-                )
-                presenter.updateGood(newGood)
+                if (verify()) {
+                    val newGood = good.copy(
+                        name = name.text.toString(),
+                        barcode = barcode.text.toString(),
+                        price = price.text.toBigDecimal(),
+                        minPrice = minPrice.text.toBigDecimal()
+                    )
+                    presenter.updateGood(newGood)
+                }
             }
         }
     }
@@ -102,5 +104,25 @@ class GoodFragment : BaseFragment(), GoodDetailView {
 
     override fun showError(throwable: Throwable) {
         Snackbar.make(root, getString(R.string.error_cant_upload), Snackbar.LENGTH_LONG).show()
+    }
+
+    private fun verify(): Boolean {
+        var result = true
+        val errorMessage = "Поле не может быть пустым"
+        if (name.text.isBlank()) {
+            result = false
+            name.error = errorMessage
+        }
+
+        if (barcode.text.isBlank()) {
+            result = false
+            barcode.error = errorMessage
+        }
+
+        if (price.text.isBlank()) {
+            result = false
+            price.error = errorMessage
+        }
+        return result
     }
 }
