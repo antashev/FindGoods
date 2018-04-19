@@ -7,6 +7,6 @@
     <string name="error_cant_login">Не удалось авторизоваться</string>
     <string name="error_cant_download_goods">Не удалось загрузить товары</string>
     <string name="error_cant_find_good">Не удалось найти товар</string>
-    <string name="empty_good_list">Нет товаров.\n Нажмите на иконку \"Сканировать\" чтобы добавить первый товаров в справочник.</string>
+    <string name="empty_good_list">Нет товаров.\n Нажмите на иконку \"Сканировать\", чтобы добавить первый товар в справочник.</string>
     <string name="empty_point_list">Список тоговых точек пуст.\n Нажмите на иконку \"Обновить\" чтобы попробовать получить данные снова.</string>
 </resources>

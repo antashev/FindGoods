@@ -110,6 +110,7 @@ class GoodListFragment: BaseFragment(), GoodListView {
             if (goodJson.isNotBlank()) {
                 val good = gson.fromJson(goodJson, Good::class.java)
                 adapter.updateItem(good)
+                emptyList.visibility = View.GONE
             }
         }
     }
