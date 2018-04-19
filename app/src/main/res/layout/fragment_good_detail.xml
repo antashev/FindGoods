@@ -33,8 +33,12 @@
             android:layout_marginTop="24dp">
             <EditText
                 android:id="@+id/name"
+                android:maxLength="128"
+                android:maxLines="3"
+                android:scrollHorizontally="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textMultiLine|textNoSuggestions"
                 android:hint="Наименование"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -47,6 +51,7 @@
             <EditText
                 android:id="@+id/barcode"
                 android:layout_width="match_parent"
+                android:inputType="text|textNoSuggestions"
                 android:layout_height="wrap_content"
                 android:hint="Штрихкод"/>
         </android.support.design.widget.TextInputLayout>
