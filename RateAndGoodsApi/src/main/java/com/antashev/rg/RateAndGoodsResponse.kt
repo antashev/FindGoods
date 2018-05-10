@@ -1,4 +1,4 @@
-package ru.modulkassa.findgoods.domain.network.dto
+package com.antashev.rg
 
 data class RateAndGoodsResponse(
     val pagination: Pagination,

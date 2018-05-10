@@ -24,8 +24,6 @@ class AppModule(context: Context) : Module() {
         bind(Gson::class.java).toInstance(Gson())
         bind(OkHttpClient::class.java).withName(ModulkassaClient::class.java).toProvider(
             ModulKassaOkHttpClientProvider::class.java)
-        bind(OkHttpClient::class.java).withName(RateAndGoodsClient::class.java).toProvider(
-            RateAndGoodsOkHttpClientProvider::class.java)
         bind(RetailPointRepository::class.java).toInstance(RetailPointRepository(context))
         bind(RetailPointApi::class.java).toProvider(RetailPointApiProvider::class.java)
         bind(RetailPointManager::class.java).to(RetailPointsImpl::class.java)

@@ -1,10 +1,10 @@
 package ru.modulkassa.findgoods.domain.good
 
+import com.antashev.rg.RgApi
 import io.reactivex.Single
 import ru.modulkassa.findgoods.domain.good.AlcoholType.ALCOHOL
 import ru.modulkassa.findgoods.domain.good.AlcoholType.NO_ALCOHOL
 import ru.modulkassa.findgoods.domain.network.api.StorageApi
-import ru.modulkassa.goods.core.api.RgApi
 import java.net.URLEncoder
 import javax.inject.Inject
 

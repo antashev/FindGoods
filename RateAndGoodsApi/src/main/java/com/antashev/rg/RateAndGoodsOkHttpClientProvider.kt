@@ -1,17 +1,13 @@
-package ru.modulkassa.findgoods.di
+package com.antashev.rg
 
 import okhttp3.OkHttpClient
 import okhttp3.OkHttpClient.Builder
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level.BODY
-import ru.modulkassa.findgoods.BuildConfig
-import ru.modulkassa.findgoods.domain.repository.RetailPointRepository
-import javax.inject.Inject
 import javax.inject.Provider
 
-// todo без инжекта не создается фабрика. Надо разобратсья
-class RateAndGoodsOkHttpClientProvider @Inject constructor(
-    private val retailPointRepository: RetailPointRepository
+class RateAndGoodsOkHttpClientProvider(
+    private val token: String
 ) : Provider<OkHttpClient> {
     override fun get(): OkHttpClient {
         val httpClientBuilder = Builder()
@@ -19,7 +15,7 @@ class RateAndGoodsOkHttpClientProvider @Inject constructor(
                 val original = chain.request()
                 val requestBuilder = original
                     .newBuilder()
-                    .header("Authorization", "Token " + BuildConfig.RATEANDGOODS_TOKEN)
+                    .header("Authorization", "Token " + token)
 
                 val request = requestBuilder.build()
                 chain.proceed(request)

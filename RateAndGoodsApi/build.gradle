@@ -1,0 +1,58 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+ext {
+    bintrayRepo = 'RateAndGoodsApi'
+    bintrayName = 'RateAndGoodsApi'
+
+    publishedGroupId = 'com.antashev'
+    libraryName = 'RateAndGoodsApi'
+    artifact = 'RateAndGoodsApi'
+
+    libraryDescription = 'Rate and Goods api for android'
+
+    siteUrl = 'https://github.com/antashev/FindGoods'
+    gitUrl = 'https://github.com/antashev/FindGoods.git'
+
+    libraryVersion = '1.0.0'
+
+    developerId = 'antashev'
+    developerName = 'Ilya Antashev'
+    developerEmail = 'antashev@gmail.com'
+
+    licenseName = 'MIT License'
+    licenseUrl = 'https://github.com/antashev/FindGoods/blob/master/LICENSE'
+    allLicenses = ['MIT']
+}
+
+
+android {
+    compileSdkVersion 27
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 27
+    }
+}
+
+dependencies {
+    // rxjava
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.6'
+    implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+
+    // retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.6.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation 'javax.inject:javax.inject:1'
+}
+repositories {
+    mavenCentral()
+}
+
+//Add these lines to publish library to bintray. This is the readymade scripts made by github user nuuneoi to make uploading to bintray easy.
+//Place it at the end of the file
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'bintray.gradle'

@@ -1,15 +1,18 @@
 package ru.modulkassa.findgoods.domain.good.di
 
+import com.antashev.rg.RgApi
+import com.antashev.rg.RgApiProvider
+import com.google.gson.Gson
+import ru.modulkassa.findgoods.BuildConfig
 import ru.modulkassa.findgoods.domain.good.FindGoods
 import ru.modulkassa.findgoods.domain.good.FindGoodsImpl
 import ru.modulkassa.findgoods.domain.network.api.StorageApi
-import ru.modulkassa.goods.core.api.RgApi
 import toothpick.config.Module
+import javax.inject.Inject
 
-class FindGoodsModule : Module() {
+class FindGoodsModule: Module() {
     init {
-        bind(RgApi::class.java).toProvider(
-            RgApiProvider::class.java)
+        bind(RgApi::class.java).toInstance(RgApiProvider(BuildConfig.RATEANDGOODS_TOKEN, Gson(), BuildConfig.RATEANDGOODS_ENDPOINT).get())
         bind(FindGoods::class.java).to(
             FindGoodsImpl::class.java)
         bind(StorageApi::class.java).toProvider(
