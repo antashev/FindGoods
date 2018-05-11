@@ -16,7 +16,8 @@
         <activity android:name=".ui.goods.GoodListActivity"
             android:launchMode="singleInstance"/>
         <activity android:name=".ui.scan.ScanActivity"/>
-        <activity android:name=".ui.good.GoodActivity"/>
+        <activity android:name=".ui.good.GoodActivity"
+            android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".ui.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

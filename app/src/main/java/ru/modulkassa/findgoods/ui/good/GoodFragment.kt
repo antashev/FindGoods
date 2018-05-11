@@ -2,6 +2,7 @@ package ru.modulkassa.findgoods.ui.good
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,7 @@ import kotlinx.android.synthetic.main.fragment_good_detail.price
 import kotlinx.android.synthetic.main.fragment_good_detail.progressBar
 import kotlinx.android.synthetic.main.fragment_good_detail.root
 import kotlinx.android.synthetic.main.fragment_good_detail.save
+import kotlinx.android.synthetic.main.fragment_good_detail.toolbar
 import ru.modulkassa.findgoods.R
 import ru.modulkassa.findgoods.di.DI
 import ru.modulkassa.findgoods.domain.good.Good
@@ -63,13 +65,19 @@ class GoodFragment : BaseFragment(), GoodDetailView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        toolbar.navigationIcon = ContextCompat.getDrawable(context!!,
+            R.drawable.ic_close_white_24dp)
+        toolbar.setNavigationOnClickListener {
+            activity?.finish()
+        }
         val goodJson = arguments?.getString(GOOD_EXTRA)
         if (goodJson != null) {
             val good = gson.fromJson(goodJson, Good::class.java)
             name.setText(good.name)
-            price.setHint(good.price?.toCurrencyString())
+            price.setText(good.price?.toCurrencyString())
             barcode.setText(good.barcode)
-            minPrice.setHint(good.minPrice?.toCurrencyString())
+            minPrice.setText(good.minPrice?.toCurrencyString())
             val filters = arrayOf(DecimalDigitsInputFilter(9, 2))
             price.filters = filters
             minPrice.filters = filters
