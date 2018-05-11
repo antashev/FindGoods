@@ -8,11 +8,19 @@ Properties properties = new Properties()
 File propertiesFile = project.rootProject.file('local.properties')
 def rgToken = null
 def rcRgToken = null
+def signPath = null
+def signStorePass = null
+def signAlias = null
+def signPass = null
 if (propertiesFile.exists()) {
     properties.load(propertiesFile.newDataInputStream())
     rgToken = properties.getProperty("RateAndGoodsToken")
     rcRgToken = properties.getProperty("rcRateAndGoodsToken")
     ext.fabric_key = properties.getProperty("fabricApiKey")
+    signPath = properties.getProperty("signPath")
+    signStorePass = properties.getProperty("signStorePass")
+    signAlias = properties.getProperty("signAlias")
+    signPass = properties.getProperty("signPass")
 } else {
     rgToken = RateAndGoodsToken
     rcRgToken = rcRateAndGoodsToken
@@ -31,8 +39,17 @@ android {
         buildConfigField "String", "RATEANDGOODS_ENDPOINT", '"https://api.ratengoods.com/data-api/v0.10/"'
         vectorDrawables.useSupportLibrary = true
     }
+    signingConfigs {
+        release {
+            storeFile file(signPath)
+            storePassword signStorePass
+            keyAlias signAlias
+            keyPassword signPass
+        }
+    }
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -87,6 +104,7 @@ def initCrashlyticsPropertiesIfNeeded() {
 
 dependencies {
     implementation project(':RateAndGoodsApi')
+    //implementation 'com.antashev:RateAndGoodsApi:1.0.0'
     // rxjava
     implementation 'io.reactivex.rxjava2:rxjava:2.1.6'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'

@@ -67,9 +67,9 @@ class GoodFragment : BaseFragment(), GoodDetailView {
         if (goodJson != null) {
             val good = gson.fromJson(goodJson, Good::class.java)
             name.setText(good.name)
-            price.setText(good.price?.toCurrencyString())
+            price.setHint(good.price?.toCurrencyString())
             barcode.setText(good.barcode)
-            minPrice.setText(good.minPrice?.toCurrencyString())
+            minPrice.setHint(good.minPrice?.toCurrencyString())
             val filters = arrayOf(DecimalDigitsInputFilter(9, 2))
             price.filters = filters
             minPrice.filters = filters
