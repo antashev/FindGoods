@@ -26,67 +26,79 @@
         <LinearLayout
             android:id="@+id/contentLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp">
-                <EditText
-                    android:id="@+id/name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Наименование"
-                    android:inputType="textMultiLine|textNoSuggestions"
-                    android:maxLength="128"
-                    android:maxLines="3"
-                    android:scrollHorizontally="false"/>
-            </android.support.design.widget.TextInputLayout>
+                android:layout_marginTop="24dp"
+                android:text="Наименование"
+                android:textSize="16sp"/>
 
-            <android.support.design.widget.TextInputLayout
+            <EditText
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp">
-                <EditText
-                    android:id="@+id/barcode"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Штрихкод"
-                    android:inputType="text|textNoSuggestions"/>
-            </android.support.design.widget.TextInputLayout>
+                android:inputType="textMultiLine|textNoSuggestions"
+                android:maxLength="128"
+                android:maxLines="3"
+                android:scrollHorizontally="false"/>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp">
-                <EditText
-                    android:id="@+id/price"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Цена"
-                    android:inputType="numberDecimal"/>
-            </android.support.design.widget.TextInputLayout>
+                android:layout_marginTop="24dp"
+                android:text="Штрихкод"
+                android:textSize="16sp"/>
 
-            <android.support.design.widget.TextInputLayout
+            <EditText
+                android:id="@+id/barcode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp">
-                <EditText
-                    android:id="@+id/minPrice"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Минимальная цена"
-                    android:inputType="numberDecimal"/>
-            </android.support.design.widget.TextInputLayout>
+                android:inputType="text|textNoSuggestions"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="Цена"
+                android:textSize="16sp"/>
+
+            <EditText
+                android:id="@+id/price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:inputType="numberDecimal"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="Минимальная цена"
+                android:textSize="16sp"/>
+
+            <EditText
+                android:id="@+id/minPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:inputType="numberDecimal"/>
 
             <Button
                 android:id="@+id/save"

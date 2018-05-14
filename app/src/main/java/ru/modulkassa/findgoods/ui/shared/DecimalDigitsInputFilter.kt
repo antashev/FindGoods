@@ -2,7 +2,6 @@ package ru.modulkassa.findgoods.ui.shared
 
 import android.text.InputFilter
 import android.text.Spanned
-import java.text.DecimalFormatSymbols
 import java.util.regex.Pattern
 
 
@@ -11,7 +10,7 @@ class DecimalDigitsInputFilter(digitsBeforeZero: Int, digitsAfterZero: Int) : In
     private val pattern: Pattern
 
     init {
-        val decimalSeparator = DecimalFormatSymbols.getInstance().decimalSeparator
+        val decimalSeparator = '.' // DecimalFormatSymbols.getInstance().decimalSeparator
         val filter = "[0-9]{0,$digitsBeforeZero}+((\\$decimalSeparator[0-9]{0,$digitsAfterZero})?)||(\\$decimalSeparator)?"
         pattern = Pattern.compile(filter)
     }

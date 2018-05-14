@@ -6,6 +6,7 @@ import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.google.gson.Gson
@@ -27,6 +28,7 @@ import ru.modulkassa.findgoods.ui.shared.DecimalDigitsInputFilter
 import ru.modulkassa.findgoods.ui.shared.toBigDecimal
 import ru.modulkassa.findgoods.ui.shared.toCurrencyString
 import toothpick.Toothpick
+import java.math.BigDecimal
 import javax.inject.Inject
 
 class GoodFragment : BaseFragment(), GoodDetailView {
@@ -75,9 +77,9 @@ class GoodFragment : BaseFragment(), GoodDetailView {
         if (goodJson != null) {
             val good = gson.fromJson(goodJson, Good::class.java)
             name.setText(good.name)
-            price.setText(good.price?.toCurrencyString())
+            price.hint = (good.price ?: BigDecimal.ZERO).toCurrencyString()
             barcode.setText(good.barcode)
-            minPrice.setText(good.minPrice?.toCurrencyString())
+            minPrice.hint = (good.minPrice ?: BigDecimal.ZERO).toCurrencyString()
             val filters = arrayOf(DecimalDigitsInputFilter(9, 2))
             price.filters = filters
             minPrice.filters = filters
@@ -87,8 +89,8 @@ class GoodFragment : BaseFragment(), GoodDetailView {
                     val newGood = good.copy(
                         name = name.text.toString(),
                         barcode = barcode.text.toString(),
-                        price = price.text.toBigDecimal(),
-                        minPrice = minPrice.text.toBigDecimal()
+                        price = getCorrectPrice(price),
+                        minPrice = getCorrectPrice(minPrice)
                     )
                     presenter.updateGood(newGood)
                 }
@@ -127,10 +129,18 @@ class GoodFragment : BaseFragment(), GoodDetailView {
             barcode.error = errorMessage
         }
 
-        if (price.text.isBlank()) {
+        if (getCorrectPrice(price) < getCorrectPrice(minPrice)) {
             result = false
-            price.error = errorMessage
+            minPrice.error = "Минимальная цена должна быть меньше цены"
         }
         return result
     }
+
+    private fun getCorrectPrice(editText: EditText): BigDecimal {
+        if (editText.text.isBlank()) {
+            return editText.hint.toString().toBigDecimal()
+        }
+        return editText.text.toString().toBigDecimal()
+    }
+
 }

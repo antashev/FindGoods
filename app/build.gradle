@@ -33,8 +33,8 @@ android {
         applicationId "ru.modulkassa.findgoods"
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "RATEANDGOODS_ENDPOINT", '"https://api.ratengoods.com/data-api/v0.10/"'
         vectorDrawables.useSupportLibrary = true
