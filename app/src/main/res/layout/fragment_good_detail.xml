@@ -3,6 +3,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -30,12 +31,22 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/barcodeTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
-                android:text="Наименование"
+                tools:text="Штрихкод: 1231394857693"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/good_name"
                 android:textSize="16sp"/>
 
             <EditText
@@ -55,24 +66,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
-                android:text="Штрихкод"
-                android:textSize="16sp"/>
-
-            <EditText
-                android:id="@+id/barcode"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
-                android:inputType="text|textNoSuggestions"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:text="Цена"
+                android:text="@string/price"
                 android:textSize="16sp"/>
 
             <EditText
@@ -89,7 +83,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
-                android:text="Минимальная цена"
+                android:text="@string/min_price"
                 android:textSize="16sp"/>
 
             <EditText
@@ -106,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
-                android:text="Сохранить"
+                android:text="@string/save"
                 style="@style/Widget.Modul.Button.Primary"/>
         </LinearLayout>
     </ScrollView>

@@ -10,7 +10,7 @@ import android.widget.EditText
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.fragment_good_detail.barcode
+import kotlinx.android.synthetic.main.fragment_good_detail.barcodeTitle
 import kotlinx.android.synthetic.main.fragment_good_detail.contentLayout
 import kotlinx.android.synthetic.main.fragment_good_detail.minPrice
 import kotlinx.android.synthetic.main.fragment_good_detail.name
@@ -76,9 +76,10 @@ class GoodFragment : BaseFragment(), GoodDetailView {
         val goodJson = arguments?.getString(GOOD_EXTRA)
         if (goodJson != null) {
             val good = gson.fromJson(goodJson, Good::class.java)
+            val barcode = good.barcode
+            barcodeTitle.text = getString(R.string.barcode, barcode)
             name.setText(good.name)
             price.hint = (good.price ?: BigDecimal.ZERO).toCurrencyString()
-            barcode.setText(good.barcode)
             minPrice.hint = (good.minPrice ?: BigDecimal.ZERO).toCurrencyString()
             val filters = arrayOf(DecimalDigitsInputFilter(9, 2))
             price.filters = filters
@@ -88,7 +89,7 @@ class GoodFragment : BaseFragment(), GoodDetailView {
                 if (verify()) {
                     val newGood = good.copy(
                         name = name.text.toString(),
-                        barcode = barcode.text.toString(),
+                        barcode = barcode,
                         price = getCorrectPrice(price),
                         minPrice = getCorrectPrice(minPrice)
                     )
@@ -118,15 +119,9 @@ class GoodFragment : BaseFragment(), GoodDetailView {
 
     private fun verify(): Boolean {
         var result = true
-        val errorMessage = "Поле не может быть пустым"
         if (name.text.isBlank()) {
             result = false
-            name.error = errorMessage
-        }
-
-        if (barcode.text.isBlank()) {
-            result = false
-            barcode.error = errorMessage
+            name.error = "Поле не может быть пустым"
         }
 
         if (getCorrectPrice(price) < getCorrectPrice(minPrice)) {
