@@ -14,7 +14,7 @@ ext {
     siteUrl = 'https://github.com/antashev/FindGoods'
     gitUrl = 'https://github.com/antashev/FindGoods.git'
 
-    libraryVersion = '1.0.0'
+    libraryVersion = '1.2.0'
 
     developerId = 'antashev'
     developerName = 'Ilya Antashev'

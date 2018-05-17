@@ -6,7 +6,6 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
-import android.widget.Toast
 import com.google.zxing.Result
 import me.dm7.barcodescanner.zxing.ZXingScannerView
 import me.dm7.barcodescanner.zxing.ZXingScannerView.ResultHandler
@@ -41,8 +40,7 @@ class ScanActivity : BaseActivity(), ResultHandler {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Timber.i("camera is available")
             } else {
-                Toast.makeText(this, "Please grant camera permission to use the QR Scanner",
-                    Toast.LENGTH_SHORT).show()
+                finish()
             }
             return
         }

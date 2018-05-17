@@ -7,7 +7,8 @@ import okhttp3.logging.HttpLoggingInterceptor.Level.BODY
 import javax.inject.Provider
 
 class RateAndGoodsOkHttpClientProvider(
-    private val token: String
+    private val token: String,
+    private val showLogs: Boolean
 ) : Provider<OkHttpClient> {
     override fun get(): OkHttpClient {
         val httpClientBuilder = Builder()
@@ -21,7 +22,7 @@ class RateAndGoodsOkHttpClientProvider(
                 chain.proceed(request)
             }
 
-        if (BuildConfig.DEBUG) {
+        if (showLogs) {
             val httpLoggingInterceptor = HttpLoggingInterceptor()
             httpLoggingInterceptor.level = BODY
             httpClientBuilder.addNetworkInterceptor(httpLoggingInterceptor)

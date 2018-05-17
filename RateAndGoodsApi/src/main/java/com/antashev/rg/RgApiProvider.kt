@@ -13,7 +13,7 @@ class RgApiProvider private constructor(
     private val url: String
 ) : Provider<RgApi> {
 
-    constructor(token: String, gson: Gson, url: String) : this(RateAndGoodsOkHttpClientProvider(token).get(), gson, url)
+    constructor(token: String, gson: Gson, url: String, showLogs: Boolean = false) : this(RateAndGoodsOkHttpClientProvider(token, showLogs).get(), gson, url)
 
     override fun get(): RgApi {
         return Retrofit.Builder()
