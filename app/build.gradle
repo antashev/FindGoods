@@ -76,11 +76,11 @@ android {
         }
     }
 
-//    applicationVariants.all { variant ->
-//        variant.outputs.all {
-//            outputFileName = "${project.name}-${variant.name}-${variant.versionName}.apk"
-//        }
-//    }
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "${project.name}-${variant.name}-${variant.versionName}.apk"
+        }
+    }
 
     lintOptions {
         abortOnError false
