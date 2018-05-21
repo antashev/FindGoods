@@ -8,11 +8,12 @@ import ru.modulkassa.findgoods.domain.good.FindGoods
 import ru.modulkassa.findgoods.domain.good.FindGoodsImpl
 import ru.modulkassa.findgoods.domain.network.api.StorageApi
 import toothpick.config.Module
-import javax.inject.Inject
 
 class FindGoodsModule: Module() {
     init {
-        bind(RgApi::class.java).toInstance(RgApiProvider(BuildConfig.RATEANDGOODS_TOKEN, Gson(), BuildConfig.RATEANDGOODS_ENDPOINT).get())
+        bind(RgApi::class.java)
+            .toInstance(RgApiProvider(BuildConfig.RATEANDGOODS_TOKEN, Gson(),
+                BuildConfig.RATEANDGOODS_ENDPOINT, BuildConfig.DEBUG).get())
         bind(FindGoods::class.java).to(
             FindGoodsImpl::class.java)
         bind(StorageApi::class.java).toProvider(

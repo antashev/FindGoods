@@ -39,7 +39,9 @@ class RetailPointRepository(
 
     fun password(): String = sharedPref.getString(PASSWORD, "")
 
-    fun selectedPointId(): String = sharedPref.getString(SELECTED_POINT, "")
+    fun selectedPointId(): String {
+        return sharedPref.getString(SELECTED_POINT, "")
+    }
 
     fun setSelectedPointId(id: String) {
         sharedPref
@@ -55,5 +57,7 @@ class RetailPointRepository(
             .apply()
     }
 
-    fun selectedPointName(): String = sharedPref.getString(SELECTED_POINT_NAME, "")
+    fun selectedPointName(): String  {
+        return sharedPref.getString(SELECTED_POINT_NAME, "")
+    }
 }
